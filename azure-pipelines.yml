@@ -20,17 +20,22 @@ stages:
     pool:
      name: 'Default'
     steps:
+    
     - task: NodeTool@0
       inputs:
         versionSpec: "10.x"
       displayName: Install Node.js
+
     - script: npm install
       displayName: "Install NPM"    
+
+    - script: npm test -- --watchAll=false
+      displayName: "Test"
+
     - task: DockerInstaller@0
       inputs:
         dockerVersion: '17.09.0-ce'
-    - script: npm test -- --watchAll=false
-      displayName: "Test"
+
     - task: Docker@2
       displayName: Build an image
       inputs:
