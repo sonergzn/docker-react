@@ -18,23 +18,9 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+     name: 'Default'
     steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: "10.x"
-      displayName: Install Node.js
-
-    - script: npm install
-      displayName: "Install NPM"
-
-    - script: npm run build
-      displayName: "Build"
-      
-    - script: npm run build
-      displayName: "Build"
-
-    - script: npm test -- --watchAll=false
+    - script: npm test -- --watchAll=true
       displayName: "Test"
     - task: DockerInstaller@0
       inputs:
