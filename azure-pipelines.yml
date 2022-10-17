@@ -10,7 +10,7 @@ resources:
 
 variables:
   - name: tag
-    value: sonergezgen/docker-react-app:$(Build.BuildId).dev
+    value: sonergezgen/docker-react-app:$(Build.BuildId)dev
 
 stages:
 - stage: Build
