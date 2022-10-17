@@ -13,7 +13,7 @@ variables:
 
 stages:
 - stage: Build
-  displayName: Build image
+  displayName: Build image and Run Tests
   jobs:
   - job: Build
     displayName: Build
@@ -28,14 +28,14 @@ stages:
 
     - script: npm install
       displayName: "Install NPM"    
-
     - script: npm test -- --watchAll=false
-      displayName: "Test"
 
-    - task: Docker@2
-      displayName: Build an image
+    - task: DockerInstaller@0
       inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile.dev'
-        tags: |
-          $(tag)
+        dockerVersion: '17.09.0-ce'
+    - task: Docker@2
+      inputs:
+        command: 'build'
+        Dockerfile: '**/Dockerfile.dev'
+        tags: '$(tag)'
+
