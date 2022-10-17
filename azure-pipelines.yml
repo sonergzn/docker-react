@@ -18,8 +18,10 @@ stages:
   - job: Build
     displayName: Build
     pool:
-      vmImage: ubuntu-latest
+     name: 'Default'
     steps:
+    - script: npm test -- --watchAll=true
+      displayName: "Test"
     - task: DockerInstaller@0
       inputs:
         dockerVersion: '17.09.0-ce'
