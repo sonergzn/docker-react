@@ -10,7 +10,7 @@ resources:
 
 variables:
   - name: tag
-    value: docker-react-app:$(Build.BuildId)dev
+    value: $(Build.BuildId)dev
 
 stages:
 - stage: Build
