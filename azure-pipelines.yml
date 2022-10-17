@@ -9,7 +9,7 @@ resources:
 - repo: self
 
 variables:
-  tag: '$(Build.BuildId)'
+  tag: 'sonergezgen/docker-react-app:$(Build.BuildId)'
 
 stages:
 - stage: Build
@@ -31,10 +31,6 @@ stages:
 
     - script: npm test -- --watchAll=false
       displayName: "Test"
-
-    - task: DockerInstaller@0
-      inputs:
-        dockerVersion: '17.09.0-ce'
 
     - task: Docker@2
       displayName: Build an image
