@@ -10,7 +10,7 @@ resources:
 
 variables:
   - name: tag
-    value: sonergezgen/docker-react-app:$(Build.BuildId)
+    value: sonergezgen/docker-react-app:$(Build.BuildId).dev
 
 stages:
 - stage: Build
@@ -34,9 +34,11 @@ stages:
       displayName: Run all tests
 
     - task: Docker@2
-      displayName: Build the Image
+      displayName: Build the Image and push
       inputs:
-        command: 'build'
+        containerRegistry: 'dockerHub'
+        repository: 'sonergezgen/reactapp'
+        command: 'buildAndPush'
         Dockerfile: '**/Dockerfile.dev'
-        tags: $(tag)
+        tags: '$(tag)'
 
