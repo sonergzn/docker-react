@@ -25,15 +25,11 @@ stages:
         versionSpec: "10.x"
       displayName: Install Node.js
     - script: npm install
-      displayName: "Install NPM"  
-    - script: npm run build
-      displayName: "Build"    
-    - script: npm test -- --watchAll=true
-      displayName: "Test"
+      displayName: "Install NPM"    
     - task: DockerInstaller@0
       inputs:
         dockerVersion: '17.09.0-ce'
-    - script: npm test -- --watchAll=true
+    - script: npm test -- --watchAll=false
       displayName: "Test"
     - task: Docker@2
       displayName: Build an image
