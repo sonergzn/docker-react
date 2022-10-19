@@ -41,4 +41,8 @@ stages:
         command: 'buildAndPush'
         Dockerfile: '**/Dockerfile.dev'
         tags: '$(tag)'
+        
+         
+      
+        
 

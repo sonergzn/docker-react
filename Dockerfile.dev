@@ -10,4 +10,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"] #Starts a DEV server locally. NOT foir production envoirement purposes.
+CMD ["npm", "run", "start"] #Starts a DEV server locally. NOT for production envoirement purposes.
