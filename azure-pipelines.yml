@@ -10,7 +10,7 @@ resources:
 
 variables:
   - name: tag
-    value: $(Build.BuildId)dev
+    value: latest
 
 stages:
 - stage: Build
