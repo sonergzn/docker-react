@@ -33,6 +33,18 @@ stages:
     - script: npm test -- --watchAll=false
       displayName: Run all tests
 
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'AzureDevops_Neoria'
+        organization: 'neoriatest'
+        scannerMode: 'MSBuild'
+        projectKey: 'neoriatest'
+        projectName: 'neoriatest'
+
+    - task: SonarCloudAnalyze@1
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
     - task: Docker@2
       displayName: Build the Image and push
       inputs:
