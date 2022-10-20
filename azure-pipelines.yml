@@ -37,7 +37,7 @@ stages:
       inputs:
         SonarCloud: 'AzureDevops_Neoria'
         organization: 'neoriatest'
-        scannerMode: 'MSBuild'
+        scannerMode: 'CLI'
         projectKey: 'neoriatest'
         projectName: 'neoriatest'
 
