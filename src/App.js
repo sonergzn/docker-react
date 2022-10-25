@@ -7,9 +7,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>Hi there, Bye there
-          very important update
-          Second important update
+        <p>Hi There.
+          Final update for openshift.
         </p>
         <a
           className="App-link"
