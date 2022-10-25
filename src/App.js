@@ -9,6 +9,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>Hi There.
           Final update for openshift.
+          Second update Openshift
         </p>
         <a
           className="App-link"
