@@ -1,0 +1,14 @@
+version: '3'
+services:
+  react-app: #logical name for the app.
+    #working_dir: /app
+    build:
+      context: . #My Dockerfile.dev file is inside of the current directory.
+      dockerfile: Dockerfile.dev # This is the name of my Dockerfile.
+    container_name: myReactApp
+    #image: sonergezgen/reactapp:dev
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app/ #Mapping the actual directory to the '/app' folder inside of my container.
+      - /app/node_modules #Creating placeholder for my 'node_modules' folder (dependecies).
