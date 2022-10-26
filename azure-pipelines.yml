@@ -1,0 +1,56 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  - name: tag
+    value: latest
+
+stages:
+- stage: Build
+  displayName: Build image and Run Tests
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+     name: 'Default'
+    steps:
+    
+    
+    - script: npm install
+      displayName: "Install NPM"
+
+    - script: npm test -- --watchAll=false
+      displayName: Run all tests
+
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'AzureDevops_Neoria'
+        organization: 'neoriatest'
+        scannerMode: 'CLI'
+        projectKey: 'neoriatest'
+        projectName: 'neoriatest'
+
+    - task: SonarCloudAnalyze@1
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
+    - task: Docker@2
+      displayName: Build the Image and push
+      inputs:
+        containerRegistry: 'dockerHub'
+        repository: 'sonergezgen/reactapp'
+        command: 'buildAndPush'
+        Dockerfile: '**/Dockerfile.dev'
+        tags: '$(tag)'
+        
+         
+      
+        
+
